@@ -1,9 +1,9 @@
 import 'package:compound/ui/shared/ui_helpers.dart';
+import 'package:compound/ui/viewmodels/signup_view_model.dart';
 import 'package:compound/ui/widgets/busy_button.dart';
 import 'package:compound/ui/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
-import 'package:compound/viewmodels/signup_view_model.dart';
 
 class SignUpView extends StatelessWidget {
   final emailController = TextEditingController();
@@ -47,8 +47,12 @@ class SignUpView extends StatelessWidget {
                 children: [
                   BusyButton(
                     title: 'Sign Up',
+                    busy: model.busy,
                     onPressed: () {
-                      // TODO: Perform firebase login here
+                      model.signUp(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
                     },
                   )
                 ],

@@ -1,3 +1,4 @@
 Tutorial flutter app using Firebase
 
-[ ] Firebase Authentication
+[x] Firebase Authentication
+[ ] StartUp Logic and User Profiles using Firebase and Firestore

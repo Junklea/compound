@@ -1,4 +1,5 @@
 import 'package:compound/ui/views/signup_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:compound/services/navigation_service.dart';
 import 'package:compound/services/dialog_service.dart';
@@ -7,8 +8,11 @@ import 'managers/dialog_manager.dart';
 import 'ui/router.dart';
 import 'locator.dart';
 
-void main() {
+void main() async {
   // Register all the models and services before the app starts
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   setupLocator();
 
   runApp(MyApp());
@@ -18,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Compound',
       builder: (context, child) => Navigator(
         key: locator<DialogService>().dialogNavigationKey,
@@ -32,7 +37,7 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Open Sans',
             ),
       ),
-      home: SignUpView(),
+      home: LoginView(),
       onGenerateRoute: generateRoute,
     );
   }
